@@ -38,9 +38,9 @@ describe('Ticket kaufen / Warenkorb testen', () => {
         cy.wait(500)
         cy.get('button').contains('Schnellauswahl')
         cy.wait(1000)
-        cy.get('app-number-picker').children().children().eq(11).click() //scra
+        cy.get('app-number-picker').children().children().eq(5).click() //scra
         cy.wait(200)
-        cy.get('#ticketPrice').select(2)
+        cy.get('#ticketPrice').select(0)
         //cy.get('div').contains('Reihe 1').click()    gak
         //cy.get('div').contains('Sitz 2').click()      gak
         cy.get('button').contains('Stadionplan').click()
@@ -60,15 +60,24 @@ describe('Ticket kaufen / Warenkorb testen', () => {
 
         })
         cy.get('#reserveTicketsBtn').click()
-        cy.get('button.btn.btn-danger').eq(1).click()
+        //cy.get('button.btn.btn-danger').eq(1).click()     für testzwecke entfernt (bekommen nur 1 ticket wegen falscher
+        //Stadionbelegung
         cy.get('#checkoutFrameNext').click() //-"-
-        cy.get('#firstName').type('test')
+        cy.get('#username').type('test@gmail.com')
+        cy.get('#password').type('test1234!')
+        cy.get('#btnLogin').click()
+        cy.get('#checkoutFrameNext').click()
+        cy.wait(300)
+        cy.get('#checkoutFrameNext').click()
+        cy.wait(300)
+        cy.get('#checkoutFrameNext').click()
+        /*cy.get('#firstName').type('test')
         cy.get('#lastName').type('test')
         cy.get('#tac').click({force:true})
         cy.wait(200)
-        cy.get('#eMail').type('test@gmail.com')
+        cy.get('#eMail').type('test@gmail.com')     wird bei gratis tickets nicht gebraucht       extra checkoutframe oben nur bei gratis tickets
         cy.get('#checkoutFrameNext').click()
-        cy.get('#checkoutFrameNext').click()
+        cy.get('#checkoutFrameNext').click()*/
     })
 })
 //Issue: Test verlangt eine Bezahlung mit Kreditkarte, dort wird man auf eine neue Seite geleitet

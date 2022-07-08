@@ -1,21 +1,21 @@
 describe('öffnet Verkaufsplan', () => {
-  it('passes', () => {
-    cy.visit('http://localhost:4200/sale')
-    cy.get('#username').type('solvistas@ea.com')
-    cy.get('#password').type('solvistas')
-    cy.get('#btnLogin').click()
-  })
+    it('passes', () => {
+        cy.visit('http://localhost:4200/sale')
+        cy.get('#username').type('solvistas@ea.com')
+        cy.get('#password').type('solvistas')
+        cy.get('#btnLogin').click()
+    })
 })
 
 describe('öffnet den Saalplan', () => {
-  it('passes' ,() => {
-    cy.visit('http://localhost:4200/sale')
-    cy.get('#username').type('solvistas@ea.com')
-    cy.get('#password').type('solvistas')
-    cy.get('#btnLogin').click()
-    cy.get("#eventTable").click(30, 100)
-    cy.get('#stadiumPlanTab').click()
-  })
+    it('passes' ,() => {
+        cy.visit('http://localhost:4200/sale')
+        cy.get('#username').type('solvistas@ea.com')
+        cy.get('#password').type('solvistas')
+        cy.get('#btnLogin').click()
+        cy.get("#eventTable").click(30, 100)
+        cy.get('#stadiumPlanTab').click()
+    })
 })
 
 
@@ -49,6 +49,7 @@ describe('belegt sitze', () => {
         cy.get('div').contains('Reihe 1').scrollIntoView().click()           gak
         cy.get('div').contains('Sitz 2').scrollIntoView().click()*/
         cy.scrollTo("top")
+        cy.wait(300)
         cy.get("span").contains("1 Ticket") // testweise mit 1 aber normalerweise 2
         cy.wait(5000)
         cy.get("app-sales-shopping-cart-card").find('button').click({force:true, multiple: true})
@@ -88,6 +89,7 @@ describe('Personalisiert Tickets mit vorgefertigter Person', () =>{
         cy.get('div').contains('Reihe 1').scrollIntoView().click()           gak
         cy.get('div').contains('Sitz 2').scrollIntoView().click()*/
         cy.scrollTo("top")
+        cy.wait(300)
         cy.get("span").contains("1 Ticket") // testweise mit 1 aber normalerweise 2
         cy.wait(1000)
         cy.get('span').contains('Personalisieren').click()
