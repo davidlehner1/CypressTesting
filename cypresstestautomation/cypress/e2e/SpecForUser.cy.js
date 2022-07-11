@@ -38,7 +38,7 @@ describe('Ticket kaufen / Warenkorb testen', () => {
         cy.wait(500)
         cy.get('button').contains('Schnellauswahl')
         cy.wait(1000)
-        cy.get('app-number-picker').children().children().eq(5).click() //scra
+        cy.get('app-number-picker').children().children().eq(5).click() //scraltach
         cy.wait(200)
         cy.get('#ticketPrice').select(0)
         //cy.get('div').contains('Reihe 1').click()    gak
@@ -73,10 +73,10 @@ describe('Ticket kaufen / Warenkorb testen', () => {
         cy.get('#lastName').type('test')
         cy.get('#tac').click({force:true})
         cy.wait(200)
-        cy.get('#eMail').type('test@gmail.com')     wird bei gratis tickets nicht gebraucht       extra checkoutframe oben nur bei gratis tickets
+        cy.get('#eMail').type('test@gmail.com')     wird bei gratis tickets nicht gebraucht       extra checkout frame oben nur bei gratis tickets
         cy.get('#checkoutFrameNext').click()
         cy.get('#checkoutFrameNext').click()*/
     })
 })
-//Issue: Test verlangt eine Bezahlung mit Kreditkarte, dort wird man auf eine neue Seite geleitet
-//worauf Cypress nicht funktioniert      gak
+//Issue: Test verlangt eine Bezahlung mit Kreditkarte, dort wird man auf eine neue Seite geleitet,
+//worauf Cypress nicht funktioniert.....,  Issue nur bei gak

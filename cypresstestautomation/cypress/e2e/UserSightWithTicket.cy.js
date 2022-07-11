@@ -48,6 +48,14 @@ describe('Events erstellen', () => {
     cy.get('#action-bar').children().children().eq(1).click()
     cy.get('button').contains('Tickets jetzt erstellen').click()
     cy.get('button').contains('Speichern').click()
+    cy.visit('http://localhost:4200/admin/events')
+    //lösen mit for zum aktualisieren
+    cy.wait(120000)
+    cy.get('#test1').click()
+    cy.wait(1000)
+    cy.get('span').contains('Zurück').click()
+    cy.wait(200)
+    cy.get('#test1').children().children().eq(0).contains('Ja')
   })
 })
 
