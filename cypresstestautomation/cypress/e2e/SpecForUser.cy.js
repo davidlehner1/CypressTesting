@@ -45,13 +45,12 @@ describe('Ticket kaufen / Warenkorb testen', () => {
         //cy.get('div').contains('Sitz 2').click()      gak
         cy.get('button').contains('Stadionplan').click()
         cy.wait(2000)
-        cy.get('a').contains('+').click();
         cy.get('canvas').then($canvas => {
             const canvasWidth = $canvas.width();
             const canvasHeight = $canvas.height();
 
-            let canvasCenterX = canvasWidth / 2.84;
-            let canvasCenterY = canvasHeight / 10;
+            let canvasCenterX = canvasWidth / 5;
+            let canvasCenterY = canvasHeight / 2;
 
             cy.wrap($canvas)
                 .scrollIntoView()
@@ -60,8 +59,7 @@ describe('Ticket kaufen / Warenkorb testen', () => {
 
         })
         cy.get('#reserveTicketsBtn').click()
-        //cy.get('button.btn.btn-danger').eq(1).click()     für testzwecke entfernt (bekommen nur 1 ticket wegen falscher
-        //Stadionbelegung
+        cy.get('button.btn.btn-danger').eq(1).click()
         cy.get('#checkoutFrameNext').click() //-"-
         cy.get('#username').type('test@gmail.com')
         cy.get('#password').type('test1234!')
@@ -81,7 +79,4 @@ describe('Ticket kaufen / Warenkorb testen', () => {
     })
 })
 //Issue: Test verlangt eine Bezahlung mit Kreditkarte, dort wird man auf eine neue Seite geleitet
-//worauf Cypress nicht funktioniert.
-
-//Frage: sollte das Ticket nochmal personalisiert werden, wenn es das sowieso automatisch wird?
-//an den markierten Stellen (-"-)
+//worauf Cypress nicht funktioniert      gak

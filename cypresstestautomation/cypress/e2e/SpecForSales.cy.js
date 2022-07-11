@@ -1,21 +1,21 @@
 describe('öffnet Verkaufsplan', () => {
-    it('passes', () => {
-        cy.visit('http://localhost:4200/sale')
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
-    })
+  it('passes', () => {
+    cy.visit('http://localhost:4200/sale')
+    cy.get('#username').type('solvistas@ea.com')
+    cy.get('#password').type('solvistas')
+    cy.get('#btnLogin').click()
+  })
 })
 
 describe('öffnet den Saalplan', () => {
-    it('passes' ,() => {
-        cy.visit('http://localhost:4200/sale')
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
-        cy.get("#eventTable").click(30, 100)
-        cy.get('#stadiumPlanTab').click()
-    })
+  it('passes' ,() => {
+    cy.visit('http://localhost:4200/sale')
+    cy.get('#username').type('solvistas@ea.com')
+    cy.get('#password').type('solvistas')
+    cy.get('#btnLogin').click()
+    cy.get("#eventTable").click(30, 100)
+    cy.get('#stadiumPlanTab').click()
+  })
 })
 
 
@@ -33,8 +33,8 @@ describe('belegt sitze', () => {
             const canvasWidth = $canvas.width();
             const canvasHeight = $canvas.height();
 
-            let canvasCenterX = canvasWidth / 2.84;
-            let canvasCenterY = canvasHeight / 10;
+            let canvasCenterX = canvasWidth / 10;
+            let canvasCenterY = canvasHeight / 2;
 
             cy.wrap($canvas)
                 .scrollIntoView()
@@ -50,11 +50,11 @@ describe('belegt sitze', () => {
         cy.get('div').contains('Sitz 2').scrollIntoView().click()*/
         cy.scrollTo("top")
         cy.wait(300)
-        cy.get("span").contains("1 Ticket") // testweise mit 1 aber normalerweise 2
+        cy.get("span").contains("2 Tickets")
         cy.wait(5000)
         cy.get("app-sales-shopping-cart-card").find('button').click({force:true, multiple: true})
-        //cy.wait(500)                                                                              wegen testzwecken auskommentiert
-        //cy.get("app-sales-shopping-cart-card").find('button').click({force:true, multiple: true})
+        cy.wait(500)
+        cy.get("app-sales-shopping-cart-card").find('button').click({force:true, multiple: true})
         cy.wait(5000)
     })
 })
@@ -73,8 +73,8 @@ describe('Personalisiert Tickets mit vorgefertigter Person', () =>{
             const canvasWidth = $canvas.width();
             const canvasHeight = $canvas.height();
 
-            let canvasCenterX = canvasWidth / 2.84;
-            let canvasCenterY = canvasHeight / 10;
+            let canvasCenterX = canvasWidth / 10;
+            let canvasCenterY = canvasHeight / 2;
 
             cy.wrap($canvas)
                 .scrollIntoView()
@@ -90,15 +90,14 @@ describe('Personalisiert Tickets mit vorgefertigter Person', () =>{
         cy.get('div').contains('Sitz 2').scrollIntoView().click()*/
         cy.scrollTo("top")
         cy.wait(300)
-        cy.get("span").contains("1 Ticket") // testweise mit 1 aber normalerweise 2
+        cy.get("span").contains("2 Tickets")
         cy.wait(1000)
         cy.get('span').contains('Personalisieren').click()
         cy.get('[role=combobox]').eq(1).type('solvistas')
         cy.get('div').contains('Admin Admin').click()
         cy.get('#save-active').click()
-        //cy.get('a:contains("Person für alle Tickets übernehmen")').first().click()  für testzwecke auskommentiert... eigentlich sollten
-        //2 Ticket im Warenkorb sein, aber ein sitz kann nicht belegt werden aus unbestimmten Gründen
-        cy.get('#btnBuyTickets').click() //Kein Verkauf möglich, Monatsbeleg fehlt!
+        cy.get('a:contains("Person für alle Tickets übernehmen")').first().click()
+        cy.get('#btnBuyTickets').click()
     })
 })
 
