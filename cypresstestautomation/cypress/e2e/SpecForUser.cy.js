@@ -1,12 +1,3 @@
-describe('Als User einloggen', () => {
-    it('passes', () => {
-        cy.visit('http://localhost:4200/login')
-        cy.get('#username').type('test@gmail.com')
-        cy.get('#password').type('test1234!')
-        cy.get('#btnLogin').click()
-    })
-})
-
 describe('Als User registrieren', () => {
     it('passes', () => {
         cy.visit('http://localhost:4200/register')
@@ -24,6 +15,15 @@ describe('Als User registrieren', () => {
         cy.get('#country').select('Österreich')
         cy.get('#agb').check({force: true})
         cy.get('#register-button').click()
+    })
+})
+
+describe('Als User einloggen', () => {
+    it('passes', () => {
+        cy.visit('http://localhost:4200/login')
+        cy.get('#username').type('test@gmail.com')
+        cy.get('#password').type('test1234!')
+        cy.get('#btnLogin').click()
     })
 })
 
