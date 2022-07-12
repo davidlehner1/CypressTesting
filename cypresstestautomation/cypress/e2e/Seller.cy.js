@@ -41,7 +41,7 @@ describe('Reservierungen', function () {
     cy.get('#btnLogin').click()
     cy.wait(1000)
     cy.get('tbody').children().last().find('button').click()
-    cy.wait(1000)
+    cy.wait(2000)
     cy.get('button.btn-primary').eq(1).click()
     cy.wait(500)
     cy.get('app-single-ticket-selection-sector-rows').children().eq(0).click()
