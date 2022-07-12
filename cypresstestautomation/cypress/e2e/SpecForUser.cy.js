@@ -79,4 +79,35 @@ describe('Ticket kaufen / Warenkorb testen', () => {
     })
 })
 //Issue: Test verlangt eine Bezahlung mit Kreditkarte, dort wird man auf eine neue Seite geleitet,
-//worauf Cypress nicht funktioniert.....,  Issue nur bei gak
+//worauf Cypress nicht funktioniert....., ausgenommen freikarten
+
+describe('Test Voucher Codes', () => {
+    it('passes', () =>{
+        cy.visit('http://localhost:4200/login')
+        cy.get('#username').type('test@gmail.com')
+        cy.get('#password').type('test1234!')
+        cy.get('#btnLogin').click()
+        cy.visit('http://localhost:4200/events')
+        cy.wait(500)
+        cy.get('button').last().click()
+        cy.wait(500)
+        cy.get('button').contains('Schnellauswahl')
+        cy.wait(1000)
+        cy.get('app-number-picker').children().children().eq(5).click() //scraltach
+        cy.wait(200)
+        cy.get('#ticketPrice').select(1)
+        cy.get('#reserveTicketsBtn').click()
+        cy.get('#checkoutFrameNext').click() //-"-
+        cy.get('#firstName').type('testV')
+        cy.get('#lastName').type('testN')
+        cy.get('#eMail').type('test@gmail.com')
+        cy.get('span').contains('Ich akzeptiere die ').click()
+        cy.get('span').contains('Aktionscode hinzufügen').click()
+        cy.get('div').find('input').last().type('vouchweihnachtenTK')
+        cy.get('button').contains('Einlösen').click()
+        cy.get('div').contains('-1,00 EUR')
+        cy.get('#checkoutFrameNext').click()
+        //wir haben das letzte Event genommen, da dies das einzige war, welches keine Freikarten hatte
+        //um den Test auszuführen, müsste man ein Event erstellen, in welchem es keine Freikarten gibt
+    })
+})
