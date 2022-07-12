@@ -1,6 +1,6 @@
 describe('Lade gekauftes Ticket herunter', () => {
     it('passes', () => {
-        cy.visit('https://d1m00rumkhsqr2.cloudfront.net/my-account')
+        cy.visit('localhost:4200/my-account')
         cy.get('#username').type('test@gmail.com')
         cy.get('#password').type('test1234!')
         cy.get('#btnLogin').click()
@@ -11,7 +11,7 @@ describe('Lade gekauftes Ticket herunter', () => {
 
 describe('change informations', () => {
     it('passes', () => {
-        cy.visit('https://d1m00rumkhsqr2.cloudfront.net/my-account')
+        cy.visit('localhost:4200/my-account')
         cy.get('#username').type('test@gmail.com')
         cy.get('#password').type('test1234!')
         cy.get('#btnLogin').click()
