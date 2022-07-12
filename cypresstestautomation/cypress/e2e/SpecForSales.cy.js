@@ -113,7 +113,7 @@ describe('Events erstellen', () => {
         cy.get('#password').type('solvistas')
         cy.get('#btnLogin').click()
         cy.get('#createEvent').click()
-        cy.get('#title').type('test2')
+        cy.get('#title').type('test')
         cy.get('#personalisationRequired').click()
         cy.get('#edit-active').click()
         cy.get('label').contains('Öffentlich verfügbar').click();
@@ -124,7 +124,9 @@ describe('Events erstellen', () => {
         cy.get('input').eq(22).click()
         cy.get('button').contains('Speichern').click()
         cy.get('a').contains('Kategorien').click()
+        cy.wait(500)
         cy.get('button').contains('Kategorien der Vorlage übernehmen').click()
+        cy.wait(500)
         cy.get('button').contains('Speichern').click()
         cy.get('#action-bar').children().children().eq(1).click()
         cy.get('button').contains('Tickets jetzt erstellen').click()
@@ -144,21 +146,21 @@ describe('Events erstellen', () => {
                 }
             })
         }*/
-        cy.wait(60000)
-        cy.get('#test2').click()
-        cy.wait(1000)
+        cy.wait(120000)
+        cy.get('#test').click()
+        cy.wait(5000)
         cy.get('span').contains('Zurück').click()
         cy.wait(200)
-        cy.get('#test2').children().children().eq(0).contains('Ja')
+        cy.get('#test').children().children().eq(0).contains('Ja')
         cy.visit('localhost:4200/sale')
         cy.wait(1000)
         cy.get('th').contains('Titel').click()
         cy.wait(500)
         cy.get('th').contains('Titel').click()
-        cy.get('tr').contains('test2')
+        cy.get('tr').contains('test')
     })
 })
-//Issue: if schlägt nicht an
+//Issue: if in der for schlägt nicht an
 
 describe('Suchzeitraum', function () {
     it('passes', ()=>{
@@ -167,7 +169,7 @@ describe('Suchzeitraum', function () {
         cy.get('#password').type('solvistas')
         cy.get('#btnLogin').click()
         cy.get('#createEvent').click()
-        cy.get('#title').type('test2')
+        cy.get('#title').type('test')
         cy.get('#personalisationRequired').click()
         cy.get('#edit-active').click()
         cy.get('label').contains('Öffentlich verfügbar').click();
@@ -181,6 +183,6 @@ describe('Suchzeitraum', function () {
 describe('Eventsichtbarkeit überprüfen', function () {
     it('passes', function() {
         cy.visit('localhost:4200/events')
-        cy.get('div').contains('test2')
+        cy.get('div').contains('test') // schlägt bei allem an was test im Namen hat
     })
 });

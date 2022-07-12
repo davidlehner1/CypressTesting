@@ -69,6 +69,7 @@ describe('Ticket kaufen / Warenkorb testen', () => {
         cy.get('#checkoutFrameNext').click()
         cy.wait(300)
         cy.get('#checkoutFrameNext').click()
+        cy.wait(5000)
         /*cy.get('#firstName').type('test')
         cy.get('#lastName').type('test')
         cy.get('#tac').click({force:true})
