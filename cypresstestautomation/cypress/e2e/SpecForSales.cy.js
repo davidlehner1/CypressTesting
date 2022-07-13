@@ -1,27 +1,30 @@
 describe('öffnet Verkaufsplan', () => {
-  it('passes', () => {
-    cy.visit('http://localhost:4200/sale')
-    cy.get('#username').type('solvistas@ea.com')
-    cy.get('#password').type('solvistas')
-    cy.get('#btnLogin').click()
-  })
+    it('passes', () => {
+        cy.visit('localhost:4200/sale')
+        cy.wait(2000)
+        cy.get('#username').type('solvistas@ea.com')
+        cy.get('#password').type('solvistas')
+        cy.get('#btnLogin').click()
+    })
 })
 
 describe('öffnet den Saalplan', () => {
-  it('passes' ,() => {
-    cy.visit('http://localhost:4200/sale')
-    cy.get('#username').type('solvistas@ea.com')
-    cy.get('#password').type('solvistas')
-    cy.get('#btnLogin').click()
-    cy.get("#eventTable").click(30, 100)
-    cy.get('#stadiumPlanTab').click()
-  })
+    it('passes', () => {
+        cy.visit('localhost:4200/sale')
+        cy.wait(2000)
+        cy.get('#username').type('solvistas@ea.com')
+        cy.get('#password').type('solvistas')
+        cy.get('#btnLogin').click()
+        cy.get("#eventTable").click(30, 100)
+        cy.get('#stadiumPlanTab').click()
+    })
 })
 
 
 describe('belegt sitze', () => {
     it('passes', () => {
-        cy.visit('http://localhost:4200/sale')
+        cy.visit('localhost:4200/sale')
+        cy.wait(2000)
         cy.get('#username').type('solvistas@ea.com')
         cy.get('#password').type('solvistas')
         cy.get('#btnLogin').click()
@@ -52,16 +55,17 @@ describe('belegt sitze', () => {
         cy.wait(300)
         cy.get("span").contains("2 Tickets")
         cy.wait(5000)
-        cy.get("app-sales-shopping-cart-card").find('button').click({force:true, multiple: true})
+        cy.get("app-sales-shopping-cart-card").find('button').click({force: true, multiple: true})
         cy.wait(500)
-        cy.get("app-sales-shopping-cart-card").find('button').click({force:true, multiple: true})
+        cy.get("app-sales-shopping-cart-card").find('button').click({force: true, multiple: true})
         cy.wait(5000)
     })
 })
 
 describe('Events erstellen', () => {
     it('passes', () => {
-        cy.visit('http://localhost:4200/admin/events')
+        cy.visit('localhost:4200/admin/events')
+        cy.wait(2000)
         cy.get('#username').type('solvistas@ea.com')
         cy.get('#password').type('solvistas')
         cy.get('#btnLogin').click()
@@ -116,9 +120,10 @@ describe('Events erstellen', () => {
 //Issue: if in der for schlägt nicht an
 
 
-describe('Personalisiert Tickets mit vorgefertigter Person', () =>{
+describe('Personalisiert Tickets mit vorgefertigter Person', () => {
     it('passes', () => {
-        cy.visit('http://localhost:4200/sale')
+        cy.visit('localhost:4200/sale')
+        cy.wait(2000)
         cy.get('#username').type('solvistas@ea.com')
         cy.get('#password').type('solvistas')
         cy.get('#btnLogin').click()
@@ -164,8 +169,9 @@ describe('Personalisiert Tickets mit vorgefertigter Person', () =>{
 //Problem mit sitzen es wird nicht das ganze Stadion belegt
 
 describe('Suchzeitraum', function () {
-    it('passes', ()=>{
-        cy.visit('http://localhost:4200/admin/events')
+    it('passes', () => {
+        cy.visit('localhost:4200/admin/events')
+        cy.wait(2000)
         cy.get('#username').type('solvistas@ea.com')
         cy.get('#password').type('solvistas')
         cy.get('#btnLogin').click()
@@ -182,7 +188,7 @@ describe('Suchzeitraum', function () {
 })
 
 describe('Eventsichtbarkeit überprüfen', function () {
-    it('passes', function() {
+    it('passes', function () {
         cy.visit('localhost:4200/events')
         cy.get('div').contains('test') // schlägt bei allem an was test im Namen hat
     })
