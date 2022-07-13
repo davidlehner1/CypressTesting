@@ -115,24 +115,17 @@ describe('Test Voucher Codes', () => {
         cy.visit('http://localhost:4200/admin/events')
         //lösen mit for zum aktualisieren
         cy.get('th').contains('Tickets generiert ').click()
-        /*for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 5; i++) {
             cy.wait(60000)
-            cy.get('#test1').click()
-            cy.wait(1000)
+            cy.get('#test').click()
+            cy.wait(4000)
             cy.get('span').contains('Zurück').click()
             cy.wait(200)
-            cy.get('#test1').then(($span) => {
-                if ($span.children().children().eq(0).text().includes('Ja')) {
-                    i = 5;
-                }
-            })
-        }*/
-        cy.wait(120000)
-        cy.get('#test').click()
-        cy.wait(5000)
-        cy.get('span').contains('Zurück').click()
-        cy.wait(200)
-        cy.get('#test').children().children().eq(0).contains('Ja')
+            let testChild = cy.get('#test').children().children().eq(0);
+            if(testChild.contains( 'Ja')){
+                i = 5
+            }
+        }
         cy.visit('localhost:4200/sale')
         cy.wait(1000)
         cy.get('th').contains('Titel').click()
@@ -163,7 +156,9 @@ describe('Test Voucher Codes', () => {
         cy.get('#btnLogin').click()
         //cy.get('span').contains('Ich akzeptiere die ').click()
         cy.get('#checkoutFrameNext').click()
+        cy.wait(200)
         cy.get('span').contains('Aktionscode hinzufügen').click()
+        cy.wait(200)
         cy.get('div').find('input').last().type('vouchweihnachtenTK')
         cy.get('button').contains('Einlösen').click()
         cy.get('div').contains('-1,00 EUR')
