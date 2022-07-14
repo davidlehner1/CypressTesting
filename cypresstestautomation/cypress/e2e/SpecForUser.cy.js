@@ -83,7 +83,59 @@ describe('Ticket kaufen / Warenkorb testen', () => {
 //worauf Cypress nicht funktioniert....., ausgenommen freikarten
 
 describe('Test Voucher Codes', () => {
-    it('passes', () =>{
+    it('passes', () => {
+        cy.visit('localhost:4200/admin/events')
+        cy.wait(2000)
+        cy.get('#username').type('solvistas@ea.com')
+        cy.get('#password').type('solvistas')
+        cy.get('#btnLogin').click()
+        cy.wait(2000)
+        cy.get('#createEvent').click()
+        cy.get('#title').type('testWithoutFree')
+        cy.get('#personalisationRequired').click()
+        cy.get('#edit-active').click()
+        cy.get('label').contains('Öffentlich verfügbar').click()
+        cy.get('input').eq(27).clear()
+        cy.get('input').eq(27).type('13.07.2023')
+        cy.get('#save-active').click()
+        cy.get('#ticketDesign').select('Singmit 2022')
+        cy.get('#stadiumConfigId').select('Heimstadion')
+        cy.wait(2000)
+        cy.get('input').eq(21).click()
+        cy.get('button').contains('Speichern').click()
+        cy.get('a').contains('Kategorien').click()
+        cy.wait(500)
+        cy.get('select').select('Ligaspiel')
+        cy.get('button').contains('Kategorien der Vorlage übernehmen').click()
+        cy.wait(500)
+        cy.get('button').contains('Speichern').click()
+        cy.get('#action-bar').children().children().eq(1).click()
+        cy.get('button').contains('Tickets jetzt erstellen').click()
+        cy.get('button').contains('Speichern').click()
+        cy.visit('http://localhost:4200/admin/events')
+        //lösen mit for zum aktualisieren
+        cy.get('th').contains('Tickets generiert ').click()
+        for (let i = 0; i < 5; i++) {
+            cy.wait(60000)
+            cy.get('#testWithoutFree').click()
+            cy.wait(4000)
+            cy.get('span').contains('Zurück').click()
+            cy.wait(200)
+            let testChild = cy.get('#testWithoutFree').children().children().eq(0);
+            if(testChild.contains( 'Ja')){
+                i = 5
+            }
+        }
+        cy.visit('localhost:4200/sale')
+        cy.wait(1000)
+        cy.get('th').contains('Titel').click()
+        cy.wait(500)
+        cy.get('th').contains('Titel').click()
+        cy.get('tr').contains('testWithoutFree')
+        cy.get('span').contains('Admin').click()
+        cy.wait(200)
+        cy.get('#logout').click()
+
         cy.visit('http://localhost:4200/login')
         cy.get('#username').type('test@gmail.com')
         cy.get('#password').type('test1234!')
@@ -99,11 +151,14 @@ describe('Test Voucher Codes', () => {
         cy.get('#ticketPrice').select(1)
         cy.get('#reserveTicketsBtn').click()
         cy.get('#checkoutFrameNext').click() //-"-
-        cy.get('#firstName').type('testV')
-        cy.get('#lastName').type('testN')
-        cy.get('#eMail').type('test@gmail.com')
-        cy.get('span').contains('Ich akzeptiere die ').click()
+        cy.get('#username').type('test@gmail.com')
+        cy.get('#password').type('test1234!')
+        cy.get('#btnLogin').click()
+        //cy.get('span').contains('Ich akzeptiere die ').click()
+        cy.get('#checkoutFrameNext').click()
+        cy.wait(200)
         cy.get('span').contains('Aktionscode hinzufügen').click()
+        cy.wait(200)
         cy.get('div').find('input').last().type('vouchweihnachtenTK')
         cy.get('button').contains('Einlösen').click()
         cy.get('div').contains('-1,00 EUR')
@@ -112,3 +167,4 @@ describe('Test Voucher Codes', () => {
         //um den Test auszuführen, müsste man ein Event erstellen, in welchem es keine Freikarten gibt
     })
 })
+
