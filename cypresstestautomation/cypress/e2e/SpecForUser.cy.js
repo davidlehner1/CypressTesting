@@ -91,7 +91,7 @@ describe('Test Voucher Codes', () => {
         cy.get('#btnLogin').click()
         cy.wait(2000)
         cy.get('#createEvent').click()
-        cy.get('#title').type('test')
+        cy.get('#title').type('testWithoutFree')
         cy.get('#personalisationRequired').click()
         cy.get('#edit-active').click()
         cy.get('label').contains('Öffentlich verfügbar').click()
@@ -117,11 +117,11 @@ describe('Test Voucher Codes', () => {
         cy.get('th').contains('Tickets generiert ').click()
         for (let i = 0; i < 5; i++) {
             cy.wait(60000)
-            cy.get('#test').click()
+            cy.get('#testWithoutFree').click()
             cy.wait(4000)
             cy.get('span').contains('Zurück').click()
             cy.wait(200)
-            let testChild = cy.get('#test').children().children().eq(0);
+            let testChild = cy.get('#testWithoutFree').children().children().eq(0);
             if(testChild.contains( 'Ja')){
                 i = 5
             }
@@ -131,7 +131,7 @@ describe('Test Voucher Codes', () => {
         cy.get('th').contains('Titel').click()
         cy.wait(500)
         cy.get('th').contains('Titel').click()
-        cy.get('tr').contains('test')
+        cy.get('tr').contains('testWithoutFree')
         cy.get('span').contains('Admin').click()
         cy.wait(200)
         cy.get('#logout').click()
