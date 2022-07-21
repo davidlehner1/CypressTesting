@@ -34,6 +34,7 @@ describe('Ticket kaufen / Warenkorb testen', () => {
         cy.get('#password').type('test1234!')
         cy.get('#btnLogin').click()
         cy.visit('http://localhost:4200/events')
+        cy.wait(5000)
         cy.get('#toDetailsWrapper').find("button").click()
         cy.wait(500)
         cy.get('button').contains('Schnellauswahl')

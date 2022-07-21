@@ -54,7 +54,8 @@ describe('Reservierungen', function () {
     cy.visit('http://localhost:4200/admin/admin-ticket-reservation-overview')
     cy.wait(1000)
     cy.get('a').contains('Bestehende Reservierungen').click()
-    cy.get('select').select('testWithoutFree (13.07.2023)') //muss wahrscheinlich täglich geändert werden
+    cy.get('select').eq(0).select('testWithoutFree (13.07.2023)') //muss wahrscheinlich täglich geändert werden
+    //funktioniert nur wenn test without free 1 mal da ist
     cy.get('td').contains('testing')
   });
 });
