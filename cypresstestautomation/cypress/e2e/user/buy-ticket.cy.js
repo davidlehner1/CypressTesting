@@ -1,31 +1,5 @@
-describe('Als User registrieren', () => {
-    it('passes', () => {
-        cy.visit('http://localhost:4200/register')
-        cy.get('#firstname').type('Vorname')
-        cy.get('#lastname').type('Nachname')
-        cy.get('#email').type('test@gmail.com')
-        cy.get('#confirmEmail').type('test@gmail.com')
-        cy.get('#phone').type('123456789')
-        cy.get('#birthdateinput').type('01.01.2001')
-            .type('{enter}')
-        cy.get('#street').type('test')
-        cy.get('#zipCode').type('1111')
-        cy.get('#city').type('city')
-        cy.get('#password').type('test1234!')
-        cy.get('#country').select('Österreich')
-        cy.get('#agb').check({force: true})
-        cy.get('#register-button').click()
-    })
-})
 
-describe('Als User einloggen', () => {
-    it('passes', () => {
-        cy.visit('http://localhost:4200/login')
-        cy.get('#username').type('test@gmail.com')
-        cy.get('#password').type('test1234!')
-        cy.get('#btnLogin').click()
-    })
-})
+
 
 describe('Ticket kaufen / Warenkorb testen', () => {
     it('passes', () => {
@@ -34,6 +8,7 @@ describe('Ticket kaufen / Warenkorb testen', () => {
         cy.get('#password').type('test1234!')
         cy.get('#btnLogin').click()
         cy.visit('http://localhost:4200/events')
+        cy.wait(5000)
         cy.get('#toDetailsWrapper').find("button").click()
         cy.wait(500)
         cy.get('button').contains('Schnellauswahl')
@@ -56,7 +31,6 @@ describe('Ticket kaufen / Warenkorb testen', () => {
                 .scrollIntoView()
                 .wait(500)
                 .click(canvasCenterX, canvasCenterY)
-
         })
         cy.get('#reserveTicketsBtn').click()
         cy.get('button.btn.btn-danger').eq(1).click()
