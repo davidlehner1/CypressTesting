@@ -4,13 +4,14 @@
   "description": "cypress automation",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:run": "cypress run"
   },
   "author": "DL",
   "license": "ISC",
   "devDependencies": {
     "cy-verify-downloads": "^0.1.8",
-    "cypress": "^10.3.0"
+    "cypress": "^10.3.1"
   },
   "dependencies": {
     "aggregate-error": "^3.1.0",
