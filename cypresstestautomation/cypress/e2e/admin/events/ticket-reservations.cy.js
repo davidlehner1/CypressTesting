@@ -24,3 +24,4 @@ describe('Reservierungen', function () {
         cy.get('td').contains('testing')
     });
 });
+
