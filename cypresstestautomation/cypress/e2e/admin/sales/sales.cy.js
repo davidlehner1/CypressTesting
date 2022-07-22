@@ -1,3 +1,5 @@
+import {login} from "../../../support/shared";
+
 describe('öffnet Verkaufsplan', () => {
     it('passes', () => {
         cy.visit('localhost:4200/sale')
@@ -43,8 +45,8 @@ describe('belegt sitze', () => {
                 .scrollIntoView()
                 .wait(500)
                 .click(canvasCenterX, canvasCenterY)
-            //warum kann der rest nicht belegt werden?
         })
+        cy.wait(1000)
         cy.get('#ticketSelectionTab').click()
         cy.get('app-number-picker').children().children().eq(2).click() //scra
         cy.wait(200)
@@ -62,7 +64,7 @@ describe('belegt sitze', () => {
     })
 })
 
-describe('Verkauf/Bezahlarten', function () {
+describe('Verkauf/Bezahlarten + stornieren', function () {
     it('passes', function () {
         cy.visit('localhost:4200/sale')
         cy.get('#username').type('solvistas@ea.com')
@@ -88,12 +90,12 @@ describe('Verkauf/Bezahlarten', function () {
         cy.get('#save-active').click()
         cy.get('#btnBuyTickets').click()
         cy.visit('localhost:4200/admin/allorders')
-        cy.get('tbody').children().eq(0).click()
+        cy.get('tbody').children().eq(1).click()
         cy.wait(500)
         cy.get('span').contains('Bestellung stornieren').click()
         cy.get('#dialogDeleteBtn').click()
         cy.visit('localhost:4200/admin/allorders')
-        cy.get('tbody').children().eq(0).contains('Storniert')
+        cy.get('tbody').children().eq(1).contains('Storniert')
     });
 });
 
@@ -145,3 +147,105 @@ describe('Personalisiert Tickets mit vorgefertigter Person', () => {
 
 //Problem mit sitzen es wird nicht das ganze Stadion belegt
 
+describe('E-Mail versenden', ()=>{
+    it('passes', ()=>{
+        cy.visit('http://localhost:4200/admin/allorders')
+        login('solvistas@ea.com', 'solvistas')
+        cy.get('tbody').children().first().click()
+        cy.wait(500)
+        cy.get('li').contains('Per E-Mail versenden').click()
+        cy.get('#dialogDeleteBtn').click()
+    })
+})
+
+describe('Rechnungsadresse ändern', () => {
+    it('passes', () => {
+        cy.visit('http://localhost:4200/admin/allorders')
+        login('solvistas@ea.com', 'solvistas')
+        cy.get('tbody').children().first().click()
+        cy.wait(500)
+        cy.get('li').contains('Rechnung').click()
+        cy.get('a').contains(' Rechnungsadresse ändern').click()
+        cy.get('#firstName').clear().type('test')
+        cy.get('#lastName').clear().type('test')
+        cy.get('#companyName').clear().type('test')
+        cy.get('#uid').clear().type('test')
+        cy.get('#street').clear().type('test')
+        cy.get('#zipCode').clear().type('1111')
+        cy.get('#city').clear().type('test')
+        cy.get('#country').select('Deutschland')
+        cy.get('#save-active').click()
+        cy.get('li').contains('Rechnung').click()
+        cy.get('a').contains(' Rechnung herunterladen').click()
+    })
+})
+
+describe('Alle Tagestickets herunterladen', ()=>{
+    it('passes', ()=>{
+        cy.visit('http://localhost:4200/admin/allorders')
+        login('solvistas@ea.com', 'solvistas')
+        cy.get('tbody').children().first().click()
+        cy.wait(500)
+        cy.get('li').contains('Alle Tagestickets herunterladen').click()
+    })
+})
+
+describe('Ticketpos stornieren', ()=>{
+    it('passes', ()=>{
+        cy.visit('http://localhost:4200/admin/allorders')
+        login('solvistas@ea.com', 'solvistas')
+        cy.get('tbody').children().first().click()
+        cy.wait(500)
+        cy.get('tr').eq(1).children().eq(5).click('center')
+        cy.get('div').contains(' Stornieren').click()
+        cy.get('#dialogDeleteBtn').click()
+    })
+})
+
+describe('Monatsbeleg erstellen', ()=>{
+    it('passes', ()=>{
+        cy.visit('http://localhost:4200/admin/cash-boxes')
+        login('solvistas@ea.com', 'solvistas')
+        cy.get('tbody').children().first().click()
+        cy.wait(500)
+        cy.get('tr').first().click()
+        cy.wait(500)
+        cy.get('li').contains('Monatsbeleg erstellen').click()
+        cy.get('th').contains('Erstellt am').click()
+        cy.wait(500)
+        cy.get('tr').eq(1).children().eq(6).click()
+        //cy.wait(200)
+        //cy.get('button').eq(4).click()
+        //cypress findet den button zum Herunterladen aus unerklärlichen Gründen nicht
+    })
+})
+
+describe('Jahresbeleg erstellen', ()=>{
+    it('passes', ()=>{
+        cy.visit('http://localhost:4200/admin/cash-boxes')
+        login('solvistas@ea.com', 'solvistas')
+        cy.get('tbody').children().first().click()
+        cy.wait(500)
+        cy.get('tr').first().click()
+        cy.wait(500)
+        cy.get('li').contains('Jahresbeleg erstellen').click()
+        cy.get('th').contains('Erstellt am').click()
+        cy.wait(500)
+        cy.get('tr').eq(1).children().eq(6).click()
+        //cy.wait(200)
+        //cy.get('button').eq(4).click()
+        //cypress findet den button zum Herunterladen aus unerklärlichen Gründen nicht
+    })
+})
+
+describe('Tickets vordrucken', ()=>{
+    it('passes', ()=>{
+        cy.visit('http://localhost:4200/admin/admin-pre-print-tickets')
+        login('solvistas@ea.com', 'solvistas')
+        cy.get('#event').select(1)
+        cy.get('#event-categories').select(1)
+        cy.get('#ticket-prices').select(1)
+        cy.get('#amount').clear().type('1')
+        cy.get('input').eq(1).click()
+    })
+})
