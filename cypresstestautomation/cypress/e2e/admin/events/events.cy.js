@@ -4,9 +4,7 @@ describe('Events erstellen', () => {
     it('passes', () => {
         cy.visit('localhost:4200/admin/events')
         cy.wait(2000)
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
+        login('solvistas@ea.com', 'solvistas')
         cy.get('#createEvent').click()
         cy.get('#title').type('test')
         cy.get('#personalisationRequired').click()
@@ -59,9 +57,7 @@ describe('Suchzeitraum', function () {
     it('passes', () => {
         cy.visit('localhost:4200/admin/events')
         cy.wait(2000)
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
+        login('solvistas@ea.com', 'solvistas')
         cy.get('#createEvent').click()
         cy.get('#title').type('test')
         cy.get('#personalisationRequired').click()

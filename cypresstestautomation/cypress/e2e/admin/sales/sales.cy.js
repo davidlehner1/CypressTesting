@@ -4,9 +4,7 @@ describe('öffnet Verkaufsplan', () => {
     it('passes', () => {
         cy.visit('localhost:4200/sale')
         cy.wait(2000)
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
+        login('solvistas@ea.com', 'solvistas')
     })
 })
 
@@ -14,9 +12,7 @@ describe('öffnet den Saalplan', () => {
     it('passes', () => {
         cy.visit('localhost:4200/sale')
         cy.wait(2000)
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
+        login('solvistas@ea.com', 'solvistas')
         cy.get("#eventTable").click(30, 100)
         cy.get('#stadiumPlanTab').click()
     })
@@ -27,9 +23,7 @@ describe('belegt sitze', () => {
     it('passes', () => {
         cy.visit('localhost:4200/sale')
         cy.wait(2000)
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
+        login('solvistas@ea.com', 'solvistas')
         cy.get("#eventTable").click(30, 100)
         cy.get('#stadiumPlanTab').click()
         cy.wait(2000)
@@ -67,9 +61,7 @@ describe('belegt sitze', () => {
 describe('Verkauf/Bezahlarten + stornieren', function () {
     it('passes', function () {
         cy.visit('localhost:4200/sale')
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
+        login('solvistas@ea.com', 'solvistas')
         cy.get('tbody').children().last().click()
         cy.get('button').contains('+').click()
         cy.wait(1000)
@@ -103,9 +95,7 @@ describe('Personalisiert Tickets mit vorgefertigter Person', () => {
     it('passes', () => {
         cy.visit('localhost:4200/sale')
         cy.wait(2000)
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
+        login('solvistas@ea.com', 'solvistas')
         cy.get("#eventTable").click(30, 100)
         cy.get('#stadiumPlanTab').click()
         cy.wait(2000)

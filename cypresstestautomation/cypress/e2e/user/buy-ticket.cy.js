@@ -1,12 +1,10 @@
-
+import {login} from "../../support/shared";
 
 
 describe('Ticket kaufen / Warenkorb testen', () => {
     it('passes', () => {
         cy.visit('http://localhost:4200/login')
-        cy.get('#username').type('test@gmail.com')
-        cy.get('#password').type('test1234!')
-        cy.get('#btnLogin').click()
+        login('test@gmail.com', 'test1234!')
         cy.visit('http://localhost:4200/events')
         cy.wait(5000)
         cy.get('#toDetailsWrapper').find("button").click()
@@ -60,9 +58,7 @@ describe('Test Voucher Codes', () => {
     it('passes', () => {
         cy.visit('localhost:4200/admin/events')
         cy.wait(2000)
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
+        login('test@gmail.com', 'test1234!')
         cy.wait(2000)
         cy.get('#createEvent').click()
         cy.get('#title').type('testWithoutFree')
@@ -111,9 +107,7 @@ describe('Test Voucher Codes', () => {
         cy.get('#logout').click()
 
         cy.visit('http://localhost:4200/login')
-        cy.get('#username').type('test@gmail.com')
-        cy.get('#password').type('test1234!')
-        cy.get('#btnLogin').click()
+        login('test@gmail.com', 'test1234!')
         cy.visit('http://localhost:4200/events')
         cy.wait(500)
         cy.get('button').last().click()

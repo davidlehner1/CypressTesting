@@ -1,9 +1,9 @@
+import {login} from "../../../support/shared";
+
 describe('Reservierungen', function () {
     it('passes', function () {
         cy.visit('http://localhost:4200/admin/admin-ticket-reservation-overview')
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
+        login('solvistas@ea.com', 'solvistas')
         cy.wait(1000)
         cy.get('tbody').children().last().find('button').click()
         cy.wait(2000)
