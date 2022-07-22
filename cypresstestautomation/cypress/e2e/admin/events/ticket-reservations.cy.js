@@ -21,7 +21,11 @@ describe('Reservierungen', function () {
         cy.get('a').contains('Bestehende Reservierungen').click()
         cy.get('select').eq(0).select('testWithoutFree (13.07.2023)') //muss wahrscheinlich täglich geändert werden
         //funktioniert nur wenn test without free 1 mal da ist
-        cy.get('td').contains('testing')
+        cy.get('td').contains('testing').click()
+        cy.get('button').contains('Löschen').click()
+        cy.wait(300)
+        cy.get('button').contains('Ticketreservierung löschen').click()
+
     });
 });
 
