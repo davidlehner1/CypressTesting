@@ -58,7 +58,7 @@ describe('Test Voucher Codes', () => {
     it('passes', () => {
         cy.visit('localhost:4200/admin/events')
         cy.wait(2000)
-        login('test@gmail.com', 'test1234!')
+        login('solvistas@ea.com', 'solvistas')
         cy.wait(2000)
         cy.get('#createEvent').click()
         cy.get('#title').type('testWithoutFree')
@@ -88,7 +88,7 @@ describe('Test Voucher Codes', () => {
         for (let i = 0; i < 5; i++) {
             cy.wait(60000)
             cy.get('#testWithoutFree').click()
-            cy.wait(4000)
+            cy.wait(6000)
             cy.get('span').contains('Zurück').click()
             cy.wait(200)
             let testChild = cy.get('#testWithoutFree').children().children().eq(0);

@@ -37,6 +37,7 @@ describe('Events erstellen', () => {
                 i = 5
             }
         }
+        //issue: Konstrukt funktioniert nicht ganz mit if und for (zeit reicht nicht mit 1 minute) for wiederholt nicht
         /*cy.wait(120000)
         cy.get('#test').click()
         cy.wait(5000)
@@ -121,6 +122,7 @@ describe('Events erstellen mit extras', () => {
                 i = 5
             }
         }
+        //issue: Konstrukt funktioniert nicht ganz mit if und for (zeit reicht nicht mit 1 minute) for wiederholt nicht
     })
 })
 
@@ -145,7 +147,7 @@ describe('Preisgruppen anlegen', ()=>{
     it('passes', () =>{
         cy.visit('http://localhost:4200/admin/admin-event-ticket-prices')
         login('solvistas@ea.com', 'solvistas')
-        cy.wait(2000)
+        cy.wait(3000)
         cy.get('button').contains('Preis hinzufügen').click()
         cy.get('#nameOfBuyerGroup').type('test')
         cy.get('#price').type('10').type('{enter}')
