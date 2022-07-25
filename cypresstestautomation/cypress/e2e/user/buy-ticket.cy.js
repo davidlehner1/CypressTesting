@@ -6,7 +6,7 @@ describe('Ticket kaufen / Warenkorb testen', () => {
         cy.visit('http://localhost:4200/login')
         login('test@gmail.com', 'test1234!')
         cy.visit('http://localhost:4200/events')
-        cy.wait(5000)
+        cy.wait(3000)
         cy.get('#toDetailsWrapper').find("button").click()
         cy.wait(500)
         cy.get('button').contains('Schnellauswahl')
@@ -100,7 +100,7 @@ describe('Test Voucher Codes', () => {
         cy.visit('http://localhost:4200/events')
         cy.wait(500)
         cy.get('button').last().click()
-        cy.wait(500)
+        cy.wait(1000)
         cy.get('button').contains('Schnellauswahl')
         cy.wait(1000)
         cy.get('app-number-picker').children().children().eq(5).click() //scraltach
