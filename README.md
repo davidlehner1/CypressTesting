@@ -1,7 +1,7 @@
 # CypressTesting
 Reihenfolge in der die Tests ausgeführt werden sollen.
-1. User->login
-2. User->registration
+1. User->registration
+2. User->login
 3. Admin->events
 4. User->buy-ticket
 5. User->account->ticket-overview

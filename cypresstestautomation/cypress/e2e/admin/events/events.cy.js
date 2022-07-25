@@ -127,7 +127,7 @@ describe('Events erstellen mit extras', () => {
         cy.visit('http://localhost:4200/admin/events')
         cy.get('th').contains('Tickets generiert ').click()
         for (let i = 0; i < 5; i++) {
-            cy.wait(60000)
+            cy.wait(120000)
             cy.get('#test2').click()
             cy.wait(4000)
             cy.get('span').contains('Zurück').click()

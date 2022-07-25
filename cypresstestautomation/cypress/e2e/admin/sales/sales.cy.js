@@ -187,7 +187,8 @@ describe('Ticketpos stornieren', ()=>{
         cy.get('tbody').children().first().click()
         cy.wait(500)
         cy.get('tr').eq(1).children().eq(5).click('center')
-        cy.get('div').contains(' Stornieren').click()
+        cy.wait(2000)
+        cy.get('div').contains(' Stornieren').click() // button wird manchmal nicht erkannt
         cy.get('#dialogDeleteBtn').click()
     })
 })
