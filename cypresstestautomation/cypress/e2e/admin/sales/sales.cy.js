@@ -1,4 +1,4 @@
-import {login} from "../../../support/shared";
+import {canvasClick, login} from "../../../support/shared";
 
 describe('öffnet Verkaufsplan', () => {
     it('passes', () => {
@@ -28,18 +28,7 @@ describe('belegt sitze', () => {
         cy.get('#stadiumPlanTab').click()
         cy.wait(2000)
         cy.get('a').contains('+').click();
-        cy.get('canvas').then($canvas => {
-            const canvasWidth = $canvas.width();
-            const canvasHeight = $canvas.height();
-
-            let canvasCenterX = canvasWidth / 10;
-            let canvasCenterY = canvasHeight / 2;
-
-            cy.wrap($canvas)
-                .scrollIntoView()
-                .wait(500)
-                .click(canvasCenterX, canvasCenterY)
-        })
+        canvasClick(2, 10)
         cy.wait(1000)
         cy.get('#ticketSelectionTab').click()
         cy.get('app-number-picker').children().children().eq(2).click() //scra
@@ -63,6 +52,7 @@ describe('Verkauf/Bezahlarten + stornieren', function () {
         cy.visit('localhost:4200/sale')
         login('solvistas@ea.com', 'solvistas')
         cy.get('tbody').children().last().click()
+        cy.wait(1000)
         cy.get('button').contains('+').click()
         cy.wait(1000)
         cy.get('span').contains('Personalisieren').click()
@@ -96,23 +86,12 @@ describe('Personalisiert Tickets mit vorgefertigter Person', () => {
         cy.visit('localhost:4200/sale')
         cy.wait(2000)
         login('solvistas@ea.com', 'solvistas')
+        cy.wait(1000)
         cy.get("#eventTable").click(30, 100)
         cy.get('#stadiumPlanTab').click()
         cy.wait(2000)
         cy.get('a').contains('+').click();
-        cy.get('canvas').then($canvas => {
-            const canvasWidth = $canvas.width();
-            const canvasHeight = $canvas.height();
-
-            let canvasCenterX = canvasWidth / 10;
-            let canvasCenterY = canvasHeight / 2;
-
-            cy.wrap($canvas)
-                .scrollIntoView()
-                .wait(500)
-                .click(canvasCenterX, canvasCenterY)
-
-        })
+        canvasClick(2, 10)
         cy.get('#ticketSelectionTab').click()
         cy.get('app-number-picker').children().children().eq(2).click() //scra
         cy.wait(200)
@@ -192,6 +171,7 @@ describe('Ticketpos stornieren', ()=>{
         cy.get('#dialogDeleteBtn').click()
     })
 })
+//issue: button wird teilweise nicht erkannt
 
 describe('Monatsbeleg erstellen', ()=>{
     it('passes', ()=>{

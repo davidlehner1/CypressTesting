@@ -19,8 +19,12 @@ describe('Reservierungen', function () {
         cy.visit('http://localhost:4200/admin/admin-ticket-reservation-overview')
         cy.wait(1000)
         cy.get('a').contains('Bestehende Reservierungen').click()
-        cy.get('select').eq(0).select('testWithoutFree (13.07.2023)')
-        //funktioniert nur wenn test without free 1 mal da ist. d.h. er funktioniert nur 1 mal
+        cy.get('select')
+            .find('option')
+            .its('length')
+            .then((len) => {
+                cy.get('select').select(len - 1)
+            })
         cy.get('td').contains('testing').click()
         cy.get('button').contains('Löschen').click()
         cy.wait(300)

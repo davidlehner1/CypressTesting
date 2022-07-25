@@ -89,7 +89,7 @@ describe('Suchzeitraum', function () {
 describe('Eventsichtbarkeit überprüfen', function () {
     it('passes', function () {
         cy.visit('localhost:4200/events')
-        cy.wait(1000)
+        cy.wait(5000) //manchmal lädt es so lange, dass der Timer nicht ausreicht
         cy.get('div').contains('test') // schlägt bei allem an was test im Namen hat
     })
 });
@@ -129,7 +129,7 @@ describe('Events erstellen mit extras', () => {
         for (let i = 0; i < 5; i++) {
             cy.wait(120000)
             cy.get('#test2').click()
-            cy.wait(4000)
+            cy.wait(6000)
             cy.get('span').contains('Zurück').click()
             cy.wait(200)
             let testChild = cy.get('#test2').children().children().eq(0);
@@ -138,6 +138,7 @@ describe('Events erstellen mit extras', () => {
             }
         }
         //issue: Konstrukt funktioniert nicht ganz mit if und for (zeit reicht nicht mit 1 minute) for wiederholt nicht
+        //deshalb fail, wegen zu langer ladezeit manchmal
     })
 })
 
@@ -162,7 +163,7 @@ describe('Preisgruppen anlegen', ()=>{
     it('passes', () =>{
         cy.visit('http://localhost:4200/admin/admin-event-ticket-prices')
         login('solvistas@ea.com', 'solvistas')
-        cy.wait(3000)
+        cy.wait(5000)
         cy.get('button').contains('Preis hinzufügen').click()
         cy.get('#nameOfBuyerGroup').type('test')
         cy.get('#price').type('10').type('{enter}')
