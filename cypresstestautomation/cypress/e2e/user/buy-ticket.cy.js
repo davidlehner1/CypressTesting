@@ -1,14 +1,12 @@
-
+import {canvasClick, login} from "../../support/shared";
 
 
 describe('Ticket kaufen / Warenkorb testen', () => {
     it('passes', () => {
         cy.visit('http://localhost:4200/login')
-        cy.get('#username').type('test@gmail.com')
-        cy.get('#password').type('test1234!')
-        cy.get('#btnLogin').click()
+        login('test@gmail.com', 'test1234!')
         cy.visit('http://localhost:4200/events')
-        cy.wait(5000)
+        cy.wait(3000)
         cy.get('#toDetailsWrapper').find("button").click()
         cy.wait(500)
         cy.get('button').contains('Schnellauswahl')
@@ -20,18 +18,7 @@ describe('Ticket kaufen / Warenkorb testen', () => {
         //cy.get('div').contains('Sitz 2').click()      gak
         cy.get('button').contains('Stadionplan').click()
         cy.wait(2000)
-        cy.get('canvas').then($canvas => {
-            const canvasWidth = $canvas.width();
-            const canvasHeight = $canvas.height();
-
-            let canvasCenterX = canvasWidth / 5;
-            let canvasCenterY = canvasHeight / 2;
-
-            cy.wrap($canvas)
-                .scrollIntoView()
-                .wait(500)
-                .click(canvasCenterX, canvasCenterY)
-        })
+        canvasClick(2, 5)
         cy.get('#reserveTicketsBtn').click()
         cy.get('button.btn.btn-danger').eq(1).click()
         cy.get('#checkoutFrameNext').click() //-"-
@@ -60,9 +47,7 @@ describe('Test Voucher Codes', () => {
     it('passes', () => {
         cy.visit('localhost:4200/admin/events')
         cy.wait(2000)
-        cy.get('#username').type('solvistas@ea.com')
-        cy.get('#password').type('solvistas')
-        cy.get('#btnLogin').click()
+        login('solvistas@ea.com', 'solvistas')
         cy.wait(2000)
         cy.get('#createEvent').click()
         cy.get('#title').type('testWithoutFree')
@@ -92,7 +77,7 @@ describe('Test Voucher Codes', () => {
         for (let i = 0; i < 5; i++) {
             cy.wait(60000)
             cy.get('#testWithoutFree').click()
-            cy.wait(4000)
+            cy.wait(6000)
             cy.get('span').contains('Zurück').click()
             cy.wait(200)
             let testChild = cy.get('#testWithoutFree').children().children().eq(0);
@@ -111,13 +96,11 @@ describe('Test Voucher Codes', () => {
         cy.get('#logout').click()
 
         cy.visit('http://localhost:4200/login')
-        cy.get('#username').type('test@gmail.com')
-        cy.get('#password').type('test1234!')
-        cy.get('#btnLogin').click()
+        login('test@gmail.com', 'test1234!')
         cy.visit('http://localhost:4200/events')
         cy.wait(500)
         cy.get('button').last().click()
-        cy.wait(500)
+        cy.wait(1000)
         cy.get('button').contains('Schnellauswahl')
         cy.wait(1000)
         cy.get('app-number-picker').children().children().eq(5).click() //scraltach
@@ -141,4 +124,3 @@ describe('Test Voucher Codes', () => {
         //um den Test auszuführen, müsste man ein Event erstellen, in welchem es keine Freikarten gibt
     })
 })
-

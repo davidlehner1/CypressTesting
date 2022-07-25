@@ -1,9 +1,9 @@
+import {login} from "../../../support/shared";
+
 describe('change informations', () => {
     it('passes', () => {
         cy.visit('localhost:4200/my-account')
-        cy.get('#username').type('test@gmail.com')
-        cy.get('#password').type('test1234!')
-        cy.get('#btnLogin').click()
+        login('test@gmail.com', 'test1234!')
         cy.wait(1000)
         cy.get('ul.list-unstyled').children().eq(5).click()
         cy.get('#firstname').clear()
