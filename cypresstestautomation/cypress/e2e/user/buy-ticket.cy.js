@@ -18,18 +18,7 @@ describe('Ticket kaufen / Warenkorb testen', () => {
         //cy.get('div').contains('Sitz 2').click()      gak
         cy.get('button').contains('Stadionplan').click()
         cy.wait(2000)
-        cy.get('canvas').then($canvas => {
-            const canvasWidth = $canvas.width();
-            const canvasHeight = $canvas.height();
-
-            let canvasCenterX = canvasWidth / 5;
-            let canvasCenterY = canvasHeight / 2;
-
-            cy.wrap($canvas)
-                .scrollIntoView()
-                .wait(500)
-                .click(canvasCenterX, canvasCenterY)
-        })
+        canvasClick(2, 5)
         cy.get('#reserveTicketsBtn').click()
         cy.get('button.btn.btn-danger').eq(1).click()
         cy.get('#checkoutFrameNext').click() //-"-
