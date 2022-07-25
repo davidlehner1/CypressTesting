@@ -1,0 +1,121 @@
+describe('empty spec', () => {
+    it('passes', () => {
+            cy.visit('http://localhost:4200/admin/person-detail')
+            cy.get('#username').type('solvistas@ea.com')
+            cy.get('#password').type('solvistas')
+            cy.get('#btnLogin').click()
+            cy.wait(2000)
+            cy.get('button').contains('Person erstellen').click()
+            cy.get('label').contains('Herr').click()
+            cy.get('#firstname').type('Ronaldo')
+            cy.get('#lastname').type('Cristiano')
+            cy.get('#email').type('rony@solvistas.com')
+            cy.get('#birthdateinput').type('05.02.1985')
+            cy.get('#phone').type('77777777777')
+            cy.get('#street').type('Cr7 Straße')
+            cy.get('#zipCode').type('7777')
+            cy.get('#city').type('Madrid')
+
+            cy.get('button').contains('Speichern').click()
+
+            cy.visit('http://localhost:4200/admin/person-detail')
+
+
+            cy.get('button').contains('Organisation erstellen').click()
+            cy.get('#organization_name').type('Atletico Madrid')
+            cy.get('#street').type('Wanda Metropolitanostreet 7')
+            cy.get('#city').type('Madrid')
+
+            cy.get('#zipCode').type('7777')
+
+            cy.get('label').contains('Herr').click()
+            cy.get('#firstname').type('Ronaldo')
+            cy.get('#lastname').type('Cristiano')
+            cy.get('#email').type('rony@solvistas.com')
+            cy.get('#birthdateinput').type('05.02.1985')
+            cy.get('#phone').type('77777777777')
+            cy.get('button').contains('Speichern').click()
+
+            cy.visit('http://localhost:4200/admin/person-detail')
+            cy.get('#userfilter').type('Atletico Madrid')
+            cy.get('td').get('mark').contains('Atletico Madrid').click()
+
+            cy.visit('http://localhost:4200/admin/person-detail/organization-detail/edit/21f02b01-99c0-4499-ad47-a8467466cc49')
+            cy.wait(700)
+            cy.get('li').contains('Person hinzufügen').click()
+
+            cy.get('label').contains('Herr').click()
+            cy.get('#firstname').type('Leo')
+            cy.get('#lastname').type('Messi')
+            cy.get('#email').type('messi@solvistas.com')
+            cy.get('#birthdateinput').type('05.02.1985')
+            cy.get('#phone').type('77777777777')
+            cy.get('button').contains('Speichern').click()
+
+            cy.visit('http://localhost:4200/admin/person-detail')
+            cy.get('#userfilter').type('Atletico Madrid')
+
+            cy.get('td').contains('Leo')
+
+            cy.get('#userfilter').type('.')
+            cy.get('td').contains('.')
+            cy.visit('http://localhost:4200/admin/person-detail/edit/e33eda1e-2ad6-4d8c-950f-465ce6c0672d')
+            cy.get('#firstname').clear().type('..')
+            cy.get('button').contains('Speichern').click()
+            cy.get('li').contains('Person löschen').click()
+            cy.get('#dialogDeleteBtn').click( )
+
+            cy.get('#userfilter').type('xyz')
+            cy.get('button').contains('Person erstellen').click()
+            cy.get('label').contains('Herr').click()
+            cy.get('#firstname').type('Ronaldo Jr')
+            cy.get('#lastname').type('Cristiano')
+            cy.get('#email').type('rony@solvistas.com')
+            cy.get('#birthdateinput').type('05.02.1985')
+            cy.get('#phone').type('77777777777')
+            cy.get('#street').type('Cr7 Straße')
+            cy.get('#zipCode').type('7777')
+            cy.get('#city').type('Madrid')
+            cy.get('button').contains('Speichern').click()
+
+            cy.visit('http://localhost:4200/admin/person-detail')
+            cy.get('#userfilter').type('Atletico Madrid')
+            cy.wait(400)
+            cy.visit('http://localhost:4200/admin/person-detail/edit/f946d83a-2c2d-41cc-8e93-596a87dc495a')
+            cy.wait(400)
+            cy.get('button').contains('Speichern').click()
+            cy.get('li').contains('Zurück').click()
+
+            cy.get('#userfilter').clear()
+            cy.get('#userfilter').type('zyx')
+            cy.get('button').contains('Organisation erstellen').click()
+
+            cy.get('#organization_name').type('Atletico Madrid')
+            cy.get('#street').type('Wanda Metropolitanostreet 7')
+            cy.get('#city').type('Madrid')
+
+            cy.get('#zipCode').type('7777')
+
+            cy.get('label').contains('Herr').click()
+            cy.get('#firstname').type('Ronaldo')
+            cy.get('#lastname').type('Cristiano')
+            cy.get('#email').type('rony@solvistas.com')
+            cy.get('#birthdateinput').type('05.02.1985')
+            cy.get('#phone').type('77777777777')
+            cy.get('button').contains('Speichern').click()
+
+            cy.visit('http://localhost:4200/admin/admin-season-ticket-prices')
+            cy.wait(400)
+            cy.get('button').contains('Neue preisgruppe').click()
+            cy.get('#name').type('test')
+            cy.get('button').contains('Speichern').click()
+            cy.get('button').contains('Preis hinzufügen').click()
+
+            cy.get('#nameOfBuyerGroup').type('VS')
+            cy.get('#price').type('30')
+            cy.get('select').select(2)
+            cy.get('#sortOrder').type('4')
+            cy.get('button').contains('Speichern').click()
+
+    })
+})
