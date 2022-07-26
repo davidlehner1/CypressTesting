@@ -9,6 +9,6 @@ Reihenfolge in der die Tests ausgeführt werden sollen.
 7. general->footer
 8. Admin->events->voucher-code
 9. Admin->events->ticket-reservations
-10. Admin->out-fans->persons / users
+10. Admin->our-fans->persons / users
 11. Admin->sales->sales
 12. Admin->season-ticket...

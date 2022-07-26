@@ -1,4 +1,4 @@
-import {login} from "../../../support/shared";
+import {checkTickets, login} from "../../../support/shared";
 
 describe('Events erstellen', () => {
     it('passes', () => {
@@ -25,18 +25,7 @@ describe('Events erstellen', () => {
         cy.get('button').contains('Tickets jetzt erstellen').click()
         cy.get('button').contains('Speichern').click()
         cy.visit('http://localhost:4200/admin/events')
-        cy.get('th').contains('Tickets generiert ').click()
-        for (let i = 0; i < 5; i++) {
-            cy.wait(60000)
-            cy.get('#test').click()
-            cy.wait(4000)
-            cy.get('span').contains('Zurück').click()
-            cy.wait(200)
-            let testChild = cy.get('#test').children().children().eq(0);
-            if(testChild.contains( 'Ja')){
-                i = 5
-            }
-        }
+        checkTickets('#test', 60000)
         //issue: Konstrukt funktioniert nicht ganz mit if und for (zeit reicht nicht mit 1 minute) for wiederholt nicht
         /*cy.wait(120000)
         cy.get('#test').click()
@@ -110,18 +99,7 @@ describe('Events erstellen mit extras', () => {
         cy.get('input[type=file]').eq(1).selectFile('cypress/fixtures/test.jpg' ,{force:true})
         cy.get('button').contains('Speichern').click()
         cy.visit('http://localhost:4200/admin/events')
-        cy.get('th').contains('Tickets generiert ').click()
-        for (let i = 0; i < 5; i++) {
-            cy.wait(120000)
-            cy.get('#test2').click()
-            cy.wait(6000)
-            cy.get('span').contains('Zurück').click()
-            cy.wait(200)
-            let testChild = cy.get('#test2').children().children().eq(0);
-            if(testChild.contains( 'Ja')){
-                i = 5
-            }
-        }
+        checkTickets('#test2', 120000)
         //issue: Konstrukt funktioniert nicht ganz mit if und for (zeit reicht nicht mit 1 minute) for wiederholt nicht
         //deshalb fail, wegen zu langer ladezeit manchmal
     })
