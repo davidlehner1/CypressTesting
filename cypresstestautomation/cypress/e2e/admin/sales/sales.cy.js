@@ -167,7 +167,7 @@ describe('Ticketpos stornieren', ()=>{
         cy.wait(500)
         cy.get('tr').eq(1).children().eq(5).click('center')
         cy.wait(2000)
-        cy.get('div').contains(' Stornieren').click() // button wird manchmal nicht erkannt
+        cy.get('div').contains(' Stornieren').click({force:true}) // button wird manchmal nicht erkannt
         cy.get('#dialogDeleteBtn').click()
     })
 })
@@ -185,9 +185,8 @@ describe('Monatsbeleg erstellen', ()=>{
         cy.get('th').contains('Erstellt am').click()
         cy.wait(500)
         cy.get('tr').eq(1).children().eq(6).click()
-        //cy.wait(200)
-        //cy.get('button').eq(4).click()
-        //cypress findet den button zum Herunterladen aus unerklärlichen Gründen nicht
+        cy.wait(1000)
+        cy.get('button').contains("Beleg herunterladen").click({force:true})
     })
 })
 
@@ -203,9 +202,8 @@ describe('Jahresbeleg erstellen', ()=>{
         cy.get('th').contains('Erstellt am').click()
         cy.wait(500)
         cy.get('tr').eq(1).children().eq(6).click()
-        //cy.wait(200)
-        //cy.get('button').eq(4).click()
-        //cypress findet den button zum Herunterladen aus unerklärlichen Gründen nicht
+        cy.wait(1000)
+        cy.get('button').contains("Beleg herunterladen").click({force:true})
     })
 })
 
