@@ -27,6 +27,8 @@ describe('Events erstellen', () => {
         cy.visit('http://localhost:4200/admin/events')
         checkTickets('#test', 60000)
         //issue: Konstrukt funktioniert nicht ganz mit if und for (zeit reicht nicht mit 1 minute) for wiederholt nicht
+        //ist in shared file (checkTickets)
+
         /*cy.wait(120000)
         cy.get('#test').click()
         cy.wait(5000)
@@ -102,6 +104,7 @@ describe('Events erstellen mit extras', () => {
         checkTickets('#test2', 120000)
         //issue: Konstrukt funktioniert nicht ganz mit if und for (zeit reicht nicht mit 1 minute) for wiederholt nicht
         //deshalb fail, wegen zu langer ladezeit manchmal
+        //ist in shared file (checkTickets)
     })
 })
 

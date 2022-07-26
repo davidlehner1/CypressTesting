@@ -72,7 +72,8 @@ describe('Test Voucher Codes', () => {
         cy.get('button').contains('Tickets jetzt erstellen').click()
         cy.get('button').contains('Speichern').click()
         cy.visit('http://localhost:4200/admin/events')
-        //lösen mit for zum aktualisieren
+        //konstrukt funktioniert nicht ganz (if und for) in checkTickets
+        //ist in shared file
         checkTickets('#testWithoutFree', 60000)
         cy.visit('localhost:4200/sale')
         cy.wait(1000)
