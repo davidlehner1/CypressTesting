@@ -63,7 +63,7 @@ describe('Suchzeitraum', function () {
 describe('Eventsichtbarkeit überprüfen', function () {
     it('passes', function () {
         cy.visit('localhost:4200/events')
-        cy.wait(5000) //manchmal lädt es so lange, dass der Timer nicht ausreicht
+        cy.wait(6000) //manchmal lädt es so lange, dass der Timer nicht ausreicht
         cy.get('div').contains('test') // schlägt bei allem an was test im Namen hat
     })
 });
