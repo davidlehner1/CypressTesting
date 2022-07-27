@@ -197,4 +197,3 @@ describe('Auswertungen testen', ()=>{
         cy.get('button').contains('Kassenabschluss erstellen').click()
     })
 })
-
