@@ -52,7 +52,7 @@ describe('Verkauf/Bezahlarten + stornieren', function () {
         cy.visit('localhost:4200/sale')
         login('solvistas@ea.com', 'solvistas')
         cy.get('tbody').children().last().click()
-        cy.wait(1000)
+        cy.wait(2000)
         cy.get('button').contains('+').click()
         cy.wait(1000)
         cy.get('span').contains('Personalisieren').click()
@@ -64,6 +64,7 @@ describe('Verkauf/Bezahlarten + stornieren', function () {
         cy.get('#btnBuyTickets').click()
         cy.visit('localhost:4200/sale')
         cy.get('tbody').children().last().click()
+        cy.wait(2000)
         cy.get('button').contains('+').click()
         cy.wait(1000)
         cy.get('span').contains('Personalisieren').click()
@@ -89,7 +90,7 @@ describe('Personalisiert Tickets mit vorgefertigter Person', () => {
         cy.wait(1000)
         cy.get("#eventTable").click(30, 100)
         cy.get('#stadiumPlanTab').click()
-        cy.wait(2000)
+        cy.wait(3000)
         cy.get('a').contains('+').click();
         canvasClick(2, 10)
         cy.get('#ticketSelectionTab').click()
@@ -164,10 +165,10 @@ describe('Ticketpos stornieren', ()=>{
         cy.visit('http://localhost:4200/admin/allorders')
         login('solvistas@ea.com', 'solvistas')
         cy.get('tbody').children().first().click()
-        cy.wait(500)
+        cy.wait(1000)
         cy.get('tr').eq(1).children().eq(5).click('center')
         cy.wait(2000)
-        cy.get('div').contains(' Stornieren').click() // button wird manchmal nicht erkannt
+        cy.get('div').contains(' Stornieren').click({force:true}) // button wird manchmal nicht erkannt
         cy.get('#dialogDeleteBtn').click()
     })
 })
@@ -185,9 +186,8 @@ describe('Monatsbeleg erstellen', ()=>{
         cy.get('th').contains('Erstellt am').click()
         cy.wait(500)
         cy.get('tr').eq(1).children().eq(6).click()
-        //cy.wait(200)
-        //cy.get('button').eq(4).click()
-        //cypress findet den button zum Herunterladen aus unerklärlichen Gründen nicht
+        cy.wait(1000)
+        cy.get('button').contains("Beleg herunterladen").click({force:true})
     })
 })
 
@@ -203,9 +203,8 @@ describe('Jahresbeleg erstellen', ()=>{
         cy.get('th').contains('Erstellt am').click()
         cy.wait(500)
         cy.get('tr').eq(1).children().eq(6).click()
-        //cy.wait(200)
-        //cy.get('button').eq(4).click()
-        //cypress findet den button zum Herunterladen aus unerklärlichen Gründen nicht
+        cy.wait(1000)
+        cy.get('button').contains("Beleg herunterladen").click({force:true})
     })
 })
 

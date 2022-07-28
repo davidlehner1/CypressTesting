@@ -7,7 +7,8 @@ Reihenfolge in der die Tests ausgeführt werden sollen.
 5. User->account->ticket-overview
 6. User->account->user-information
 7. general->footer
-8. Admin->events->ticket-reservations
-9. Admin->out-fans->persons / users
-10. Admin->sales->sales
-11. Admin->season-ticket...
+8. Admin->events->voucher-code
+9. Admin->events->ticket-reservations
+10. Admin->our-fans->persons / users
+11. Admin->sales->sales
+12. Admin->season-ticket...

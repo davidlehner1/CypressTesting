@@ -1,4 +1,4 @@
-import {login} from "../../../support/shared";
+import {checkTickets, login} from "../../../support/shared";
 
 describe('Events erstellen', () => {
     it('passes', () => {
@@ -25,19 +25,10 @@ describe('Events erstellen', () => {
         cy.get('button').contains('Tickets jetzt erstellen').click()
         cy.get('button').contains('Speichern').click()
         cy.visit('http://localhost:4200/admin/events')
-        cy.get('th').contains('Tickets generiert ').click()
-        for (let i = 0; i < 5; i++) {
-            cy.wait(60000)
-            cy.get('#test').click()
-            cy.wait(4000)
-            cy.get('span').contains('Zurück').click()
-            cy.wait(200)
-            let testChild = cy.get('#test').children().children().eq(0);
-            if(testChild.contains( 'Ja')){
-                i = 5
-            }
-        }
+        checkTickets('#test', 60000)
         //issue: Konstrukt funktioniert nicht ganz mit if und for (zeit reicht nicht mit 1 minute) for wiederholt nicht
+        //ist in shared file (checkTickets)
+
         /*cy.wait(120000)
         cy.get('#test').click()
         cy.wait(5000)
@@ -53,21 +44,6 @@ describe('Events erstellen', () => {
     })
 })
 //Issue: if in der for schlägt nicht an
-
-describe('VoucherCode an AK', ()=>{
-    it('passes', ()=>{
-        cy.visit('http://localhost:4200/sale')
-        login('solvistas@ea.com', 'solvistas')
-        cy.get('td').contains('testWithoutFree').click()
-        cy.wait(2000)
-        cy.get('button').contains('+').eq(0).click()
-        cy.wait(1000)
-        cy.get('a').contains('Aktionscode einlösen').click()
-        cy.get('input[name="code"]').type('vouchweihnachtenpers').type('{enter}')
-        cy.get('div').contains('-1,00 EUR')
-    })
-})
-
 
 describe('Suchzeitraum', function () {
     it('passes', () => {
@@ -89,7 +65,7 @@ describe('Suchzeitraum', function () {
 describe('Eventsichtbarkeit überprüfen', function () {
     it('passes', function () {
         cy.visit('localhost:4200/events')
-        cy.wait(5000) //manchmal lädt es so lange, dass der Timer nicht ausreicht
+        cy.wait(6000) //manchmal lädt es so lange, dass der Timer nicht ausreicht
         cy.get('div').contains('test') // schlägt bei allem an was test im Namen hat
     })
 });
@@ -125,20 +101,10 @@ describe('Events erstellen mit extras', () => {
         cy.get('input[type=file]').eq(1).selectFile('cypress/fixtures/test.jpg' ,{force:true})
         cy.get('button').contains('Speichern').click()
         cy.visit('http://localhost:4200/admin/events')
-        cy.get('th').contains('Tickets generiert ').click()
-        for (let i = 0; i < 5; i++) {
-            cy.wait(120000)
-            cy.get('#test2').click()
-            cy.wait(6000)
-            cy.get('span').contains('Zurück').click()
-            cy.wait(200)
-            let testChild = cy.get('#test2').children().children().eq(0);
-            if(testChild.contains( 'Ja')){
-                i = 5
-            }
-        }
+        checkTickets('#test2', 120000)
         //issue: Konstrukt funktioniert nicht ganz mit if und for (zeit reicht nicht mit 1 minute) for wiederholt nicht
         //deshalb fail, wegen zu langer ladezeit manchmal
+        //ist in shared file (checkTickets)
     })
 })
 
@@ -231,4 +197,3 @@ describe('Auswertungen testen', ()=>{
         cy.get('button').contains('Kassenabschluss erstellen').click()
     })
 })
-
