@@ -159,7 +159,7 @@ describe('Bilder', ()=>{
     it('passes', ()=>{
         cy.visit('http://localhost:4200/admin/admin-ticket-category-images')
         login('solvistas@ea.com', 'solvistas')
-        cy.wait(2000)
+        cy.wait(3000)
         cy.get('button').contains('Bild hinzufügen').click()
         cy.get('#name').type('test')
         cy.get('#url').type('test').type('{enter}')
