@@ -90,7 +90,7 @@ describe('Personalisiert Tickets mit vorgefertigter Person', () => {
         cy.wait(1000)
         cy.get("#eventTable").click(30, 100)
         cy.get('#stadiumPlanTab').click()
-        cy.wait(2000)
+        cy.wait(3000)
         cy.get('a').contains('+').click();
         canvasClick(2, 10)
         cy.get('#ticketSelectionTab').click()
@@ -165,7 +165,7 @@ describe('Ticketpos stornieren', ()=>{
         cy.visit('http://localhost:4200/admin/allorders')
         login('solvistas@ea.com', 'solvistas')
         cy.get('tbody').children().first().click()
-        cy.wait(500)
+        cy.wait(1000)
         cy.get('tr').eq(1).children().eq(5).click('center')
         cy.wait(2000)
         cy.get('div').contains(' Stornieren').click({force:true}) // button wird manchmal nicht erkannt
